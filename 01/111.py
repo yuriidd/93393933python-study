@@ -6,6 +6,9 @@
 
 #!/usr/bin/env python
 
-print('', 1, 3, 5, 7, 11, '', sep='_', end='hui')
-
-print()
+print('', 1, 3, 5, 7, 11, '', sep='_', end='!!!\n')
+print('', 1, 3, 5, 7, 11, '', sep='_', end='!!!\n')
+print('', 1, 3, 5, 7, 11, '', sep='_', end='!!!\n')
+print('', 1, 3, 5, 7, 11, '', sep='_', end='!!!\n')
+print('', 1, 3, 5, 7, 11, '', sep='_', end='!!!\n')
+# print()

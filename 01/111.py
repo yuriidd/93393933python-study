@@ -4,19 +4,7 @@
 # @author: Yurii
 # """
 
-#!/usr/bin/env python
-
-# print('1'+'2')
-# print('', 1, 3, 5, 7, 11, '', sep='_', end='!!!')
-# print('', 1, 3, 5, 7, 11, '', sep='_', end='!!!\n')
-# print('', 1, 3, 5, 7, 11, '', sep='_', end='!!!\n')
-# print('', 1, 3, 5, 7, 11, '', sep='_', end='!!!\n')
-# print('', 1, 3, 5, 7, 11, '', sep='_', end='!!!\n')
-# print?
-
-
-
-# 
+#!/usr/bin/env python# 
 
 # def repeat(s, exclaim):
 #     """
@@ -63,6 +51,11 @@ print('!!!!!!!!!\n'*5)
 print('hello'[0])
  
 s='0123456789'
+
+
+rar = r'xx\n\txx'
+
+print(rar)
 
 
 

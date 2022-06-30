@@ -15,18 +15,17 @@ for person in address_book:
 
 s=str(address_book[0:1])
 
-
+'xxxNAGIBATORxxx'.find('N')
 y = 'xxxNAGIBATORxxx'
 x = 'LL1ishkaBOY'
 z = 'CreateWorld'
-
 print(f'eto on >>{y:>20}<<')
 print(f'eto on >>{x:>20}<<')
 print(f'eto on >>{z:>20}<<')
-
-
 'eto on >>{:^20}<< &&{:^20}&&'.format('CreateHold','jujuwu')
 
+
+x[:10]
 
 # % operator
 text = ("%d little pigs come out, "
@@ -39,7 +38,7 @@ text = ("%d little pigs come out, "
 print("%d = %s = %s = %s" % (3, 'huff', 'puff', 'house'))
 
 speed = 85
-mood = 'good'
+mood = 'oooooogggggggd1'
 
 if speed >= 80:
     print('License and registration please')
@@ -56,3 +55,31 @@ else:
       
 if speed >= 80: print('You are so busted')
 else: print('Have a nice day')
+
+#######################################
+
+'dayz' not in 'Have A Nice Day'
+
+# xx2 = 'Have\tA\tNice\tDay'
+xx2 = 4
+
+print('\t', xx2, '\t', xx2)
+'com.realpython.com'.str
+
+print('\t'.join(['a','b','c']).expandtabs(10).strip('a'))
+':'.join(list(x))
+
+':'.join(list(x)) == ':'.join(x)
+
+'com.realpython.com'.partition('.')
+'aaa,bbb,ccc'.rsplit(',',1)
+'a\ra'.splitlines(4)
+
+rb'ffg\xddbar'[4]
+
+
+
+
+
+
+

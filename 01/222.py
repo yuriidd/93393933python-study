@@ -133,13 +133,13 @@ xlname = 'Z'
 print('Hello', xname+xlname.rjust(len(xlname)+1), '\b! Nice to see you!')
 
 ''''ЗАДАНИЕ 3'''
-Addition
-Subtraction
-Division
-Multiplication
-Exponent (Power)
-Modulus
-Floor division
+# Addition
+# Subtraction
+# Division
+# Multiplication
+# Exponent (Power)
+# Modulus
+# Floor division
 
 j=-17
 k=3

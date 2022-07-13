@@ -275,3 +275,7 @@ else:
     print("He-a")
 
 #############
+
+import sys
+print(sys.path)
+

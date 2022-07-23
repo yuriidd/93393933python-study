@@ -155,5 +155,7 @@ print('modulus of j and k :', abs(j),'and',abs(k))
 print('Floor division: j // k =', j//k)
 
 
-
+lo = 'dffdgo'
+lo.upper()
+lo
 

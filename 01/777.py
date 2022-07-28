@@ -114,5 +114,127 @@ while i < 10:
         print('2nd branch')
     print('3rd branch')
     i += 1
-
 print('zebra')
+
+
+print(
+      (lambda x, y: (x + y)/2)
+      (4, 3)
+      )
+#########
+def hello():
+  print("Hello World") 
+  return("hello")
+
+def hello_noreturn():
+  print("Hello World")
+  
+# Multiply the output of `hello()` with 2 
+hello() * 2
+
+# (Try to) multiply the output of `hello_noreturn()` with 2 
+hello_noreturn() * 2
+
+# Define `plus()`
+def plus(a,b):
+  sum = a + b
+  return (sum, a)
+
+# Call `plus()` and unpack variables 
+sum, a = plus(3,4)
+
+# Print `sum()`
+print(sum)
+################
+from functools import reduce
+my_list = [1,2,3,4,5,6,7,8,9,10]
+
+# Use lambda function with `filter()`
+filtered_list = list(filter(
+    lambda x: (x*2 > 10), 
+    my_list))
+# Use lambda function with `map()`
+mapped_list = list(map(lambda x: x*2, my_list))
+# Use lambda function with `reduce()`
+reduced_list = reduce(lambda x, y: x+y, my_list)
+
+print(filtered_list)
+print(mapped_list)
+print(reduced_list)
+
+##############
+'''Homework:
+Task 1
+A simple function.
+Create a simple function called favorite_movie, which takes a string 
+containing the name of your favorite movie. The function should then 
+print “My favorite movie is named {name}”.
+
+'''
+def favorite_movie(movie):
+    print("my favourite movi is named {name}".format(name = movie))
+    
+favorite_movie('pulp fiction')
+###################
+'''
+Task 2
+Creating a dictionary.
+Create a function called make_country, which takes in a country’s name 
+and capital as parameters. Then create a dictionary from those two, 
+with ‘name’ as a key and ‘capital’ as a parameter. Make the function 
+print out the values of the dictionary to make sure that it works as intended.'''
+
+def make_country(country, capital):
+    dicti = {country.capitalize(): capital.capitalize()}
+    return dicti
+
+make_country('japan', 'tokio')
+
+##############
+'''Task 3
+A simple calculator.
+Create a function called make_operation, which takes in a simple 
+arithmetic operator as a first parameter (to keep things simple let it 
+only be ‘+’, ‘-’ or ‘*’) and an arbitrary number of arguments (only numbers) 
+as the second parameter. Then return the sum or product of all the numbers 
+in the arbitrary parameter. For example:
+
+
+the call make_operation(‘+’, 7, 7, 2) should return 16
+the call make_operation(‘-’, 5, 5, -10, -20) should return 30
+the call make_operation(‘*’, 7, 6) should return 42  
+'''
+
+def make_operation(operation, *ar):
+    operands = []
+    for o in *ar:
+        if type(o) is int:
+            operands.append(o)
+        else:
+            print('args is not good')
+            break
+    start = operands[0]
+    if operation == '+':
+        result = sum(operands)
+    elif operation == '-':
+    elif operation == '*':       
+        
+    # operands = [i for i in *ar is type(*ar)]
+    # if type('+') is str:
+    #     if [*operands] is int:
+            
+        
+    result = 
+
+if [my_list] is int:
+    print('yy')
+    
+[my_list] is int
+
+ar=['2','3']
+
+sum(my_list)
+
+operands = [i for i in ar if type(i)==int]
+ar=(1,2,1,2,1,2)
+sum(ar)

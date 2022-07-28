@@ -45,4 +45,15 @@ print(*guest_welcomes, sep='\n')
 list(enumerate(new_times))
 '''aaaaaaaaaaaaaaaaaa ^^^ '''
 
+##############################
+
+
+
+
+
+
+
+
+
+
 

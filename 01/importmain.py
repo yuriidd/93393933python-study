@@ -33,4 +33,6 @@ f'{qw:.3f}'
 f'{qw:^020.3f}'
 
 
-
+import builtins
+dir(builtins)
+dir(builtins).count('tuple') 

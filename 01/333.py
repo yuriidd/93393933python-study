@@ -85,7 +85,7 @@ and terminate the program."""
 
 user_password = '1234'
 pass_counter = 0
-while pass_counter<4:
+while pass_counter < 4:
     input_pass = input('enter your password: \n')
     if input_pass == user_password:
         print('You have successfully logged in!')

@@ -66,7 +66,7 @@ def score(goal, teststring):
             num_same += 1
     return num_same / len(goal)
 
-def main():
+# def main():
     goalstring = 'methinks it is like a weasel'
     newstring = generate_one(26)
 #    best = 0
@@ -87,7 +87,7 @@ def genstr(len_sgoal):
 def scoring(goal_string,generated_string):
     return goal_string == generated_string
     
-def main():
+# def main():
     sgoal = list('kuope') # input from user or type what you generate ar last
     # sgen = '' # ??
     counter = 0
@@ -207,23 +207,36 @@ the call make_operation(‘*’, 7, 6) should return 42
 
 def make_operation(operation, *ar):
     operands = []
-    for o in *ar:
+    print(ar)
+    print(sum(ar))
+    for o in ar:
         if type(o) is int:
-            operands.append(o)
+            continue
         else:
             print('args is not good')
             break
-    start = operands[0]
+    # start = operands[0]
     if operation == '+':
-        result = sum(operands)
+        result = sum(ar)
     elif operation == '-':
+        result = sum([ar[0] if z == ar[0] else -z for z in ar])
     elif operation == '*':       
-        
+        result = ar[0]
+        for z in ar[1:]:
+            result *= z
+    return result
+make_operation('*', 3,4,5)
+
+x = 5 
+z = 10
+result = lambda x,z: z - x
     # operands = [i for i in *ar is type(*ar)]
     # if type('+') is str:
     #     if [*operands] is int:
-            
-        
+ar = [1,2,1,2,1,2] 
+
+result = sum([ar[0] if z == ar[0] else -z for z in ar[1:]])
+z = lambda x: (start - x)        
     result = 
 
 if [my_list] is int:
@@ -236,5 +249,62 @@ ar=['2','3']
 sum(my_list)
 
 operands = [i for i in ar if type(i)==int]
-ar=(1,2,1,2,1,2)
+ar=[1,2,3,4,5,6]
 sum(ar)
+
+[ar[0] if z == ar[0] else -z for z in ar ]
+
+
+[ [ 1 if item_idx == row_idx else 0 
+   for item_idx in range(0, 3) ] 
+ for row_idx in range(0, 3) ]
+
+
+
+######################
+'''Homework:                Task 1
+Write a function called oops that explicitly raises an IndexError exception 
+when called. Then write another function that calls oops inside a try/except 
+state­ment to catch the error. What happens if you change oops to raise 
+KeyError instead of IndexError?
+'''
+def oops():
+        raise IndexError()
+
+def oopsiki():
+    try:
+        oops()
+    except KeyError:
+        print('index')
+    else:
+        print('no index')
+        
+#############
+'''Task 2
+Write a function that takes in two numbers from the user via input(), 
+call the numbers a and b, and then returns the value of squared a divided 
+by b, construct a try-except block which raises an exception if the two values 
+given by the input function were not numbers, and if value b was zero 
+(cannot divide by zero).   
+'''
+
+def fuqwe():
+    try:
+        a = int(40)
+        b = int('d')
+        # a = int(input('1st:'))
+        # b = int(input('2nd:'))
+        s = a ** 2 / b
+        return s
+    except ValueError:
+        print('enter int values')
+    except ZeroDivisionError:
+        print('b valur is zero. we cant devide on it. try again') 
+    # except:
+    #     print('there are more errors')
+    print('program ends')
+
+g = fuqwe()
+
+gg = ['no output' if g==None else g][0]
+print('g is: ',gg)

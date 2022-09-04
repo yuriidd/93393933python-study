@@ -150,7 +150,7 @@ capitals.items()
 type(capitals.items())
 type(capitals)
 capitals.get('Letto')
-
+capitals['Iowa']
 #######################
 '''Homework:            Task 1
 The greatest number

@@ -299,3 +299,255 @@ julia.get_info_all()
 Teacher_unit.info()
 julia.set_profile()
 julia.set_phone('555-55-55-33')
+
+###################################################
+###################################################
+
+'''
+Task 2
+
+Mathematician
+
+Implement a class Mathematician which is a helper class for doing math 
+operations on lists
+
+The class doesn't take any attributes and only has methods:
+
+square_nums (takes a list of integers and returns the list of squares)
+remove_positives (takes a list of integers and returns it without 
+                  positive numbers
+filter_leaps (takes a list of dates (integers) and removes those 
+              that are not 'leap years'
+```
+
+class Mathematician:
+    pass
+
+m = Mathematician()
+assert m.square_nums([7, 11, 5, 4]) == [49, 121, 25, 16]
+assert m.remove_positives([26, -11, -8, 13, -90]) == [-11, -8, -90]
+assert m.filter_leaps([2001, 1884, 1995, 2003, 2020]) == [1884, 2020]
+'''
+
+class Mathematician:
+    def __init__(self):
+        pass
+    
+    def square_nums(self,listt):
+        # i = []
+        # for k in listt:
+        #     i.append(k**2)
+        # return list(i)
+        result = [k**2 for k in listt]
+        return list(result)
+    
+    def remove_positives(self,listt):
+        # i = []
+        # for k in listt:
+        #     if k < 0:
+        #         i.append(k)
+        # return list(i)
+        result = [k for k in listt if k < 0]
+        # result = list(filter(lambda k: k < 0,listt))
+        # типа пример замены через лямбду
+        return list(result)   
+
+    def filter_leaps(self,listt):
+        # i = []
+        # for k in listt:
+        #     if k % 2 == 0:
+        #         i.append(k)
+        # return list(i)                
+        result = [k for k in listt if k % 2 == 0]
+        return list(result) 
+
+m = Mathematician()
+m.square_nums([7, 11, 5, 4])
+m.remove_positives([-4,5,10,-10])
+m.filter_leaps([2001, 1884, 1995, 2003, 2020])
+
+#result = sum([ar[0] if z == ar[0] else -z for z in ar])
+
+
+
+###################################################
+###################################################
+
+'''
+Task 3
+
+Product Store
+
+Write a class Product that has three attributes:
+type
+name
+price
+
+Then create a class ProductStore, which will have some Products and 
+will operate with all products in the store. All methods, in case they 
+can’t perform its action, should raise ValueError with appropriate error 
+information.
+
+Tips: Use aggregation/composition concepts while implementing 
+the ProductStore class. You can also implement additional classes to operate 
+on a certain type of product, etc.
+
+Also, the ProductStore class must have the following methods:
+
+add(product, amount) - adds a specified quantity of a single product with 
+        a predefined price premium for your store(30 percent)
+set_discount(identifier, percent, identifier_type=’name’) - adds a discount 
+        for all products specified by input identifiers (type or name). 
+        The discount must be specified in percentage
+sell_product(product_name, amount) - removes a particular amount of products 
+        from the store if available, in other case raises an error. It also 
+        increments income if the sell_product method succeeds.
+get_income() - returns amount of many earned by ProductStore instance.
+get_all_products() - returns information about all available products in 
+        the store.
+get_product_info(product_name) - returns a tuple with product name and amount 
+        of items in the store.
+```
+
+class Product:
+    pass
+
+class ProductStore:
+pass
+
+p = Product('Sport', 'Football T-Shirt', 100)
+p2 = Product(Food, 'Ramen, 1.5)
+s = ProductStore()
+s.add(p, 10)
+s.add(p2, 300)
+s.sell(‘Ramen’, 10)
+assert s.get_product_info(‘Ramen’) == (‘Ramen’, 290)
+'''
+
+class Product:
+    def __init__(self, type, name, price):
+        self.type  = type
+        self.name  = name
+        self.price = price
+
+class ProductStore:
+    def __init__(self):
+        self.shop = []
+        self.income = 0
+        
+    def add(self, product, amount):
+        self.shop.append([product, amount, round(product.price*1.3,2), 0])
+        
+    def sell(self, product_name, amount):
+        for product in self.shop:
+            if product[0].name == product_name: #ищем продукт в магазине
+                if product[1] > amount: #достаточное ли количество?
+                    product[1] -= amount #списываем из магазина
+                    # total = price * (1 - discount) * amount
+                    total = product[2] * (100 - product[3]) * 0.01 * amount
+                    self.income += round(total,2)
+                else: print(f'Product Store has not enough product you want. \
+                            Available only {product[1]} units of goods.')
+
+    def get_income(self):
+        return self.income
+    
+    def set_discount(self, type, percent, name=''):
+        if name != '': #если есть имя - ищем по имени товара
+            for product in self.shop:
+                if product[0].name == product_name:
+                    product[3] = percent
+        else: #иначе перебор по типу товара
+            for product in self.shop:
+                if product[0].type == type:
+                    product[3] = percent
+    
+    def get_all_products(self):
+        for product in self.shop:
+                a = f'Type          | {product[0].type:<20}|\n' +\
+                    f'Name          | {product[0].name:<20}|\n' +\
+                    f'Price         | {product[2]:<20}|\n' +\
+                    f'Discount      | {product[3]:<20}|\n' +\
+                    f'Available     | {product[1]:<16}qt. |\n'
+                print(a)
+        
+    def get_product_info(self, product_name):
+        for product in self.shop:
+            if product[0].name == product_name:
+                a = f'Type          | {product[0].type:<20}|\n' +\
+                    f'Name          | {product[0].name:<20}|\n' +\
+                    f'Price         | {product[2]:<20}|\n' +\
+                    f'Discount      | {product[3]:<20}|\n' +\
+                    f'Available     | {product[1]:<16}qt. |\n'
+                print(a)
+                
+    def get_product_info2(self, product_name):
+        for product in self.shop:
+            if product[0].name == product_name:    
+                return (product[0].name, product[1])
+                
+tra = [[1,4],2,3,4,5]
+tra.index([1,4])
+# identifier      
+# identifier_type=’name’
+       
+p = Product('Sport', 'Football T-Shirt', 100)
+p2 = Product('Food', 'Ramen', 1.5)
+o = Product('Medicines', 'ABC minerals', 500)
+
+shop1 = ProductStore()
+shop1.add(p, 10)
+shop1.add(p2, 300)
+shop1.add(o, 50)
+
+shop1.sell('Ramen', 500)
+shop1.sell('Football T-Shirt', 1)
+shop1.get_product_info('Football T-Shirt')
+shop1.get_product_info2('Football T-Shirt')
+shop1.get_all_products()
+shop1.set_discount('Sport',5)
+        # a = f'ID          | {self.id:<20}|\n' +\
+        #     f'Name        | {self.fname:20}|\n' +\
+        #     f'Last name   | {self.lname:20}|\n' +\
+        #     f'Phone       | {self.phone_number:20}|\n' +\
+        #     f'Passport    | {self.gov_id["passport"]:20}|\n' +\
+        #     f'Driver lic. | {self.gov_id["driver_license"]:20}|\n' +\
+        #     f'Subject     | {self.subject:20}|\n' +\
+        #     f'Degree      | {self.degree:20}|\n' +\
+        #     f'Salary      | $ {self.salary:<18}|'
+
+
+
+
+
+###################################################
+###################################################
+
+'''
+Task 4
+Custom exception
+
+Create your custom exception named `CustomException`, 
+you can inherit from base Exception class, but extend its functionality 
+to log every error message to a file named `logs.txt`. 
+Tips: Use __init__ method to extend functionality 
+for saving messages to file
+
+```
+class CustomException(Exception):
+def __init__(self, msg):
+
+'''
+
+msg = 'How much of the fish?'
+
+class CustomException(Exception):
+    def __init__(self, msg='errororororororo!!!!!!!'):
+        self.msg = msg
+        gg = open('D:/py/93393933python-study/01/9/CustomException_log.txt','a')
+        gg.write("LOGGINing':'that has been hapened!!\n")
+        gg.close()
+        super().__init__(self.msg)
+        
+raise CustomException(msg)  
+        

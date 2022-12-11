@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 """Created on Sat Jul 16 07:31:47 2022@author: xiaom"""
 
+
+#################### FUNCTION
+# simple
+
+
 ''' a tree of size 3
    *
   ***

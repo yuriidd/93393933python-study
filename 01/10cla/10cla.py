@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Created on Mon Aug  1 06:09:59 2022@author: xiaom"""
 
+###############             CLASSES
+####### gate logic program
+
 class Car():
     
     total_number_cars = 0

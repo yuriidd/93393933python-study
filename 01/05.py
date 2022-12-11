@@ -3,6 +3,8 @@
 
 
 #=================== TUPLE    LIST SET
+
+#######################             namedtuple
 s = 'asdfghjkl'
 for x in s: print(x)
 
@@ -211,9 +213,33 @@ print('full:', gr_list, '\n7-5:', gx_list)
 # if 21 > 6 and (21 // 7) == 0 and (21 // 5) != 0:
 #     print(True)
     
-############
+############ ZIP UNZIP trick
 
 z1 = zip(mutants, powers)
 # 'Unzip' the tuples in z1 by unpacking with * and zip(): result1, result2
 result1, result2 = zip(*z1)
 # wtf ?
+
+#=================
+#=================
+
+#################################
+#################################                namedtuple
+
+# alternate to dataframe, you can access to data with attributes
+
+# Import namedtuple from collections
+from collections import namedtuple
+# Create the namedtuple: DateDetails
+DateDetails = namedtuple('DateDetails', ['date', 'stop', 'riders'])
+# Create the empty list: labeled_entries
+labeled_entries = []
+# Iterate over the entries list
+for date, stop, riders in entries:
+    # Append a new DateDetails namedtuple instance for each entry to labeled_entries
+    labeled_entries.append(DateDetails(date, stop, riders))
+# Print the first 5 items in labeled_entries
+print(labeled_entries[:5])
+
+print(labeled_entries[0].date)         # <<<<
+#################################

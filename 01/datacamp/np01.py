@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 
-#=========================
+#========================= NUMPY
 
-x = range(3)
-type(x)
-y = iter(x)
-type(y)
+import numpy as np
 
-
+x = np.array([3,4,True,False, '5.2'])
+print(x)
 
 
 

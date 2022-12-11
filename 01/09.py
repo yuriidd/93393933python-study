@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 """Created on Thu Jul 28 11:19:22 2022@author: xiaom"""
 
+#################### OPEN   files
+################### CSV
+
+
+
+
 with open('D:/py/93393933python-study/01/9/weekdays.txt') as week_file:
     weekdays = [day.rstrip() for day in week_file.readlines()]
     
@@ -109,9 +115,25 @@ print(a)
 zz.close()
 
 
+#############
+############3
+################     CSV
+import csv
+
+
+########  simple open - read each line - close
+csvfile = open('D:\py\93393933python-study\dc\somedata\geofeeds.csv', 'r')
+
+column_names = ['route', 'country code', 'country state', 'city','?']
+for row in csv.DictReader(csvfile, fieldnames=column_names):
+    print(row)
+csvfile.read()
+csvfile.read(100) # read first 100 symbols
+                                # how to read first few lines?
+csvfile.close()
 
 
 
-
+######## 
 
 

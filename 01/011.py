@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Created on Tue Aug 30 17:24:32 2022@author: xiaom"""
 
+#################### hometask . CLASSES . INHERIT
+
 '''Task 1
 School
 Make a class structure in python representing people at school. 

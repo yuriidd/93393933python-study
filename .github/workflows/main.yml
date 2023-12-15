@@ -35,7 +35,7 @@ jobs:
     - name: print msg
       run: echo "Hey, YOU! HELLO WORLD SHMA!"    
     - name:
-      run: echo "deploy package name is ${{ env.DEPLOY_PACKAGE_NAME }}
+      run: echo "deploy package name is ${{ env.DEPLOY_PACKAGE_NAME }}"
 
 
 

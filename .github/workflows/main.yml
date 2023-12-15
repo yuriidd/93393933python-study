@@ -1,0 +1,30 @@
+#  -------------------
+#
+#  First action v1.0
+#  Yurii
+#
+#  -------------------
+
+name: GitHub-Actions-Basics
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  ololo-mgs:
+    runs-on: ubuntu-latest 
+    steps:
+    - name: print msg
+      run: echo "Hey, YOU! HELLO WORLD!"
+
+
+
+
+
+
+
+
+
+      

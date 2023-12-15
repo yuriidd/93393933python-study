@@ -6,6 +6,10 @@
 #  -------------------
 
 name: GitHub-Actions-Basics
+env:
+  APPLICATION_NAME: "MyFlask"
+  DEPLOY_PACKAGE_NAME    : "flask-deploy-ver-${{ github.sha }}"
+
 
 on:
   push:
@@ -18,6 +22,11 @@ jobs:
     steps:
     - name: print msg
       run: echo "Hey, YOU! HELLO WORLD OLOLO!"
+    - name: Execute few commands
+      run: |
+        echo "Hello MSG 1"
+        echo "Hello MSG 2"
+        echo "Application name: ${{ env.APPLICATION_NAME }}"
 
   shmalolo-msg:
     runs-on: ubuntu-latest
@@ -25,6 +34,8 @@ jobs:
     steps:
     - name: print msg
       run: echo "Hey, YOU! HELLO WORLD SHMA!"    
+    - name:
+      run: echo "deploy package name is ${{ env.DEPLOY_PACKAGE_NAME }}
 
 
 

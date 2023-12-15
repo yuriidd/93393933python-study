@@ -27,7 +27,9 @@ jobs:
         echo "Hello MSG 1"
         echo "Hello MSG 2"
         echo "Application name: ${{ env.APPLICATION_NAME }}"
-
+    - name: List current folder
+      run: ls -la
+    
   shmalolo-msg:
     runs-on: ubuntu-latest
     needs: [ololo-mgs]

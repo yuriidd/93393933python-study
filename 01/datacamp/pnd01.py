@@ -274,3 +274,323 @@ df_yearsummary2.info()
 
 
 #####################################
+#####################################
+#####################################
+#####################################
+
+print('Cleanliness: ', airlines['cleanliness'].unique(), "\n")
+# Find the cleanliness category in airlines not in categories
+cat_clean = set(airlines['cleanliness']).difference(categories['cleanliness'])
+# Find rows with that category
+cat_clean_rows = airlines['cleanliness'].isin(cat_clean)
+# Print rows with inconsistent category
+print(airlines[cat_clean_rows])
+# Print rows with consistent categories only
+print(airlines[~cat_clean_rows])
+
+
+
+# Lower dest_region column and then replace "eur" with "europe"
+airlines['dest_region'] = airlines['dest_region'].str.lower() 
+airlines['dest_region'] = airlines['dest_region'].replace({'eur':'europe'})
+# Remove white spaces from `dest_size`
+airlines['dest_size'] = airlines['dest_size'].str.strip()
+
+
+
+# Create ranges for categories
+label_ranges = [0, 60, 180, np.inf]
+label_names = ['short', 'medium', 'long']
+# Create wait_type column
+airlines['wait_type'] = pd.cut(airlines['wait_min'], bins = label_ranges, 
+                                labels = label_names)
+# Create mappings and replace
+mappings = {'Monday':'weekday', 'Tuesday':'weekday', 'Wednesday': 'weekday', 
+            'Thursday': 'weekday', 'Friday': 'weekday', 
+            'Saturday': 'weekend', 'Sunday': 'weekend'}
+airlines['day_week'] = airlines['day'].replace(mappings)
+
+
+
+
+
+# Replace "Dr." with empty string ""
+airlines['full_name'] = airlines['full_name'].str.replace("Dr.","")
+# Replace "Mr." with empty string ""
+airlines['full_name'] = airlines['full_name'].str.replace("Mr.","")
+airlines['full_name'] = airlines['full_name'].str.replace("Miss","")
+airlines['full_name'] = airlines['full_name'].str.replace("Ms.","")
+# Assert that full_name has no honorifics
+assert airlines['full_name'].str.contains('Ms.|Mr.|Miss|Dr.').any() == False
+
+
+
+
+
+# Store length of each row in survey_response column
+resp_length = airlines['survey_response'].str.len()
+# Find rows in airlines where resp_length > 40
+airlines_survey = airlines[resp_length > 40]
+# Assert minimum survey_response length is > 40
+assert airlines_survey['survey_response'].str.len().min() > 40
+print(airlines_survey['survey_response'])
+
+
+#############
+'''
+In [2]:
+banking.head()
+Out[2]:
+
+    cust_id  acct_amount acct_cur  inv_amount account_opened last_transaction
+0  8C35540A     44244.71   dollar    35500.50       03-05-18         30-09-19
+1  D5536652     86506.85   dollar    81921.86       21-01-18         14-01-19
+2  A631984D     77799.33   dollar    46412.27       26-01-18         06-10-19
+3  93F2F951     93875.24     euro    76563.35       21-08-17         10-07-19
+4  DE0A0882     99998.35     euro    18669.01       05-06-17         15-01-19
+'''
+
+# Find values of acct_cur that are equal to 'euro'
+acct_eu = banking['acct_cur'] == 'euro'
+# Convert acct_amount where it is in euro to dollars
+banking.loc[acct_eu, 'acct_amount'] = banking.loc[acct_eu, 'acct_amount'] * 1.1
+# Unify acct_cur column by changing 'euro' values to 'dollar'
+banking.loc[acct_eu, 'acct_cur'] = 'dollar'
+# Assert that only dollar currency remains
+assert banking['acct_cur'].unique() == 'dollar'
+
+
+##
+
+# Print the header of account_opend
+print(banking['account_opened'].head())
+# Convert account_opened to datetime
+banking['account_opened'] = pd.to_datetime(banking['account_opened'],
+                                           # Infer datetime format
+                                           infer_datetime_format = True,
+                                           # Return missing value for error
+                                           errors = 'coerce') 
+# Get year of account opened
+banking['acct_year'] = banking['account_opened'].dt.strftime('%Y')
+print(banking['acct_year'])
+
+##
+
+
+# Store fund columns to sum against
+fund_columns = ['fund_A', 'fund_B', 'fund_C', 'fund_D']
+# Find rows where fund_columns row sum == inv_amount
+inv_equ = banking[fund_columns].sum(axis = 1) == banking['inv_amount']
+# Store consistent and inconsistent data
+consistent_inv = banking[inv_equ]
+inconsistent_inv = banking[~inv_equ]
+# Store consistent and inconsistent data
+print("Number of inconsistent investments: ", inconsistent_inv.shape[0])
+
+
+
+# Store today's date and find ages
+today = dt.date.today()
+ages_manual = today.year - banking['birth_date'].dt.year
+# Find rows where age column == ages_manual
+age_equ = banking['age'] == ages_manual
+# Store consistent and inconsistent data
+consistent_ages = banking[age_equ]
+inconsistent_ages = banking[~age_equ]
+# Store consistent and inconsistent data
+print("Number of inconsistent ages: ", inconsistent_ages.shape[0])
+
+
+###############
+'''The pandas, missingno and matplotlib.pyplot packages have been imported 
+as pd, msno and plt respectively. 
+'''
+# Print number of missing values in banking
+print(banking.isna().sum())
+# Visualize missingness matrix
+msno.matrix(banking)
+plt.show()
+
+
+# Isolate missing and non missing values of inv_amount
+missing_investors = banking[banking['inv_amount'].isna()]
+investors = banking[~banking['inv_amount'].isna()]
+
+missing_investors.describe()
+investors.describe()
+
+# Sort banking by age and visualize
+banking_sorted = banking.sort_values(by = 'age')
+msno.matrix(banking_sorted)
+plt.show()
+
+# Drop missing values of cust_id
+banking_fullid = banking.dropna(subset = ['cust_id'])
+# Compute estimated acct_amount
+acct_imp = banking_fullid['inv_amount'] * 5
+# Impute missing acct_amount with corresponding acct_imp
+banking_imputed = banking_fullid.fillna({'acct_amount':acct_imp})
+# Print number of missing values
+print(banking_imputed.isna().sum())
+
+'''
+    cust_id             0
+    acct_amount         0
+    inv_amount          0
+    account_opened      0
+    last_transaction    0
+    dtype: int64
+'''
+
+
+
+#################################################3
+for row in rangers_df.iterrows():
+    x = 1
+  #### ####  
+    
+# Loop over the DataFrame and print each row's Index, Year and Wins (W)
+for row in rangers_df.itertuples():
+  i = row.Index
+  year = row.Year
+  wins = row.W
+  
+  # Check if rangers made Playoffs (1 means yes; 0 means no)
+  if row.Playoffs == 1:
+    print(i, year, wins)
+    
+    
+############################3############################3  
+run_diffs = []
+
+# Loop over the DataFrame and calculate each row's run differential
+for row in yankees_df.itertuples():
+    runs_scored = row.RS
+    runs_allowed = row.RA
+    run_diff = calc_run_diff(runs_scored, runs_allowed)
+    run_diffs.append(run_diff)
+# Append new column
+yankees_df['RD'] = run_diffs
+print(yankees_df)    
+    
+print(yankees_df[yankees_df['RD'] == 309])
+
+
+
+
+
+    
+############################3############################3  
+'''In [2]:
+rays_df[:6]
+Out[2]:
+
+       RS   RA   W  Playoffs
+2012  697  577  90         0
+2011  707  614  91         1
+2010  802  649  96         1
+2009  803  754  84         0
+2008  774  671  97         1'''
+
+
+    
+# Gather sum of all columns
+stat_totals = rays_df.apply(sum, axis=0)
+print(stat_totals)    
+    
+######   
+# Gather total runs scored in all games per year
+total_runs_scored = rays_df[['RS', 'RA']].apply(sum, axis=1)
+print(total_runs_scored)    
+#######
+# Convert numeric playoffs to text by applying text_playoffs()
+textual_playoffs = rays_df.apply(lambda row: text_playoffs(row['Playoffs']), axis=1)
+print(textual_playoffs)
+
+
+#############################################
+
+# Display the first five rows of the DataFrame
+print(dbacks_df.head())
+
+'''
+  Team League  Year   RS   RA   W    G  Playoffs
+0  ARI     NL  2012  734  688  81  162         0
+1  ARI     NL  2011  731  662  94  162         1
+2  ARI     NL  2010  713  836  65  162         0
+3  ARI     NL  2009  720  782  70  162         0
+4  ARI     NL  2008  720  706  82  162         0'''
+
+# Create a win percentage Series 
+win_percs = dbacks_df.apply(lambda row: calc_win_perc(row['W'], row['G']), axis=1)
+print(win_percs, '\n')
+
+
+
+############                                      PND can calc as NP aarays
+# Use the W array and G array to calculate win percentages
+win_percs_np = calc_win_perc(baseball_df['W'].values, baseball_df['G'].values)
+# Append a new column to baseball_df that stores all win percentages
+baseball_df['WP'] = win_percs_np
+
+print(baseball_df.head())
+
+
+############ 
+############ 
+############  
+def predict_win_perc(RS, RA):
+    prediction = RS ** 2 / (RS ** 2 + RA ** 2)
+    return np.round(prediction, 2)
+
+win_perc_preds_loop = []
+
+# Use a loop and .itertuples() to collect each row's predicted win percentage
+for row in baseball_df.itertuples():
+    runs_scored = row.RS
+    runs_allowed = row.RA
+    win_perc_pred = predict_win_perc(runs_scored, runs_allowed)
+    win_perc_preds_loop.append(win_perc_pred)
+
+# Apply predict_win_perc to each row of the DataFrame
+win_perc_preds_apply = baseball_df.apply(lambda row: predict_win_perc(row['RS'], row['RA']), axis=1)
+
+# Calculate the win percentage predictions using NumPy arrays
+win_perc_preds_np = predict_win_perc(baseball_df['RS'].values, baseball_df['RA'].values)
+baseball_df['WP_preds'] = win_perc_preds_np
+print(baseball_df.head())
+
+
+
+###################################      
+###################################                             MERGE (JOIN)   
+# Merge crosswalk into cafes on their zip code fields
+cafes_with_pumas = cafes.merge(crosswalk,
+                        left_on = 'location_zip_code',
+                        right_on= 'zipcode')
+# Merge pop_data into cafes_with_pumas on puma field
+cafes_with_pop = cafes_with_pumas.merge(pop_data,
+                       left_on = 'puma',
+                       right_on = 'puma' )
+# View the data
+print(cafes_with_pop.head())
+
+
+
+
+
+###################################   transpose
+
+# Change the DataFrame so rows become columns and vice versa
+fifa_transpose = fifa_players.set_index('name')[['height', 'weight']].transpose()
+# Print fifa_transpose
+print(fifa_transpose)
+
+
+
+
+
+
+
+
+

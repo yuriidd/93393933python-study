@@ -33,7 +33,10 @@ jobs:
         ls -la
     - name: Git clone my repo
       uses: actions/checkout@v1
-      
+    - name: List current folder
+      run: |
+        pwd
+        ls -la
     
   shmalolo-msg:
     runs-on: ubuntu-latest

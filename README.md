@@ -1,7 +1,5 @@
 # 93393933python-study
 
-Читай меня, почему бы и нет)
-Read me, why not?)
+# just python study (and some formulas) m/(^_^)m
 
-### Теперь я узнал что существует язык разметки маркдаун / Now i know about markdown language
-new head successfuly created xD
+# nothing special

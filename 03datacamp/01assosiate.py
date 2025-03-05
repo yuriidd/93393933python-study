@@ -45,12 +45,12 @@ print(list(capitalize))     # >> 8
 
 # %%
 #
-
-
 type("User Name 187")               # >> str
 type("User Name 187") == 'str'      # >> False
 type("User Name 187") == "str"      # >> False
 print(type('User Name 187'))        # >> <class 'str'>
+
+" ".join('op_pa'.split("_")).title()    # >> Op Pa
 
 
 # %%
@@ -120,6 +120,10 @@ result1, result2 = zip(*z1)
 print(result1 == mutants)
 print(result2 == powers)
 
+#
+names_type1 = [*zip(names, primary_types)]
+print(*names_type1[:5], sep='\n')           # cool unpack print
+
 # ######################                CSV >> pandas df ()
 # #1
 import pandas as pd
@@ -153,8 +157,9 @@ nums2 = [x + 1 for x in nums]
 # nums3 = (lambda x: x + 1)(iter(nums)      that's not working :(
 
 pairs2 = [(num1, num2) for num1 in range(0, 2) for num2 in range(6, 8)]
-#[ output expression for iterator variable in iterable if predicate expression ]
-#new_fellowship = [member if len(member)>=7 else '' for member in fellowship]
+'''[ output expression  for  iterator variable  in  iterable 
+                                        if  predicate expression ]'''
+# new_fellowship = [member if len(member)>=7 else '' for member in fellowship]
 
 #
 qwe = range(0,5)
@@ -415,7 +420,7 @@ print(dtz.replace(tzinfo=timezone.utc)) # > 2017-12-30 15:09:03+00:00
 from dateutil import tz   # includes rule for changing time in timezones
 
 et = tz.gettz('America/New_York')   #
-last = datetime(2017, 12, 30, 15, 9, 3, tzinfo = et)
+last = datetime(2017, 12, 30, 15, 9, 3, tzinfo=et)
 
 tz.datetime_ambiguous(dtz)  # check whether timestamp in ending daylight period
 tz.enfold(second_1am)# it refers to the time after the daylight savings time change.
@@ -430,12 +435,12 @@ tz.enfold(second_1am)# it refers to the time after the daylight savings time cha
 riders = pd.read_csv('bikes.csv', parse_dates = ['Start date', 'End date'])
 
 (  rides['Start date'] = pd.to_datetime(rides['Start date'], 
-                                     format = "%Y-%m-%d %H:%M:%S")   )
+                                     format="%Y-%m-%d %H:%M:%S")   )
 rides['Duration'].dt.total_seconds().head(5)
 rides['Duration'] = (rides['End date'] - rides['Start date']).dt.total_seconds()
 rides.resample('M', on = 'Start date')['Duration seconds'].mean().plot()
 
-rides['Start date'].dt.tz_localize('America/New_York', ambiguous = 'NaT')
+rides['Start date'].dt.tz_localize('America/New_York', ambiguous='NaT')
 rides['Start date'].dt.Year # .dt.month ; .dt.day_name() : .dt.weekday
 rides['Start date'].dt.tz_convert('Europe/London')
 
